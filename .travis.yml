@@ -1,0 +1,14 @@
+dist: trusty
+addons:
+  chrome: stable
+language: node_js
+node_js:
+  - '8'
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+install:
+  - npm install
+  - npm install -g codecov
+script:
+  - npm test
+  - codecov -f coverage/coverage-final.json
